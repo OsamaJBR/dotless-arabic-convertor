@@ -5,7 +5,15 @@
 <head>
     
     <title>dotless.app</title>
-    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-30Z4SZD6N8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-30Z4SZD6N8');
+    </script>
     <!-- CSS (load bootstrap from a CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -22,7 +30,7 @@
             $("#clear").click(function(){
                 document.getElementById('textarea').value='';
             });
-
+            
             $("#convert").click(function(){
                 $.ajax({
                     contentType: 'application/json',
