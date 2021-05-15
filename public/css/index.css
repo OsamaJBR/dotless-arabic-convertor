@@ -1,0 +1,74 @@
+.header__container {
+    background-color: #f8f9fa!important;
+    padding: 16px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.text__container {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.textarea__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.form-control {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.inputs__container {
+    margin-top: 16px;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.convert__button, .clear__button {
+    width: 200px;
+    height: 46px;
+    background: none;
+    border: 1px solid #dbdee0;
+    margin-bottom: 16px;
+}
+
+.convert__button:hover, .clear__button:hover {
+    border: 1px solid black;
+}
+
+.after__converted__container {
+    display: none;
+    padding: 0 16px;
+}
+
+.after__converted {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 16px;
+}
+
+.converted__text {
+    max-width: 1174px;
+    margin: 0 auto;
+    margin-top: 24px;
+    border: 1px solid #dbdee0;
+    padding: 16px;
+    text-align: right;
+}
+
+.alert-success {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    display: none;
+}
+
+.show__class {
+    display: block;
+}

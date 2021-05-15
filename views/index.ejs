@@ -1,46 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <head>
-    
+
     <title>dotless.app</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-30Z4SZD6N8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-        
+
         gtag('config', 'G-30Z4SZD6N8');
     </script>
     <!-- CSS (load bootstrap from a CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body { 
-            padding-top:50px;
-            margin: auto;
-            width: 50%;
-            padding: 10px;            
-        }        
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#clear").click(function(){
-                document.getElementById('textarea').value='';
+        $(document).ready(function () {
+            $("#clear").click(function () {
+                document.getElementById('textarea').value = '';
+                document.getElementById('converted__data').innerHTML = '';
+                document.getElementById('after__converted__container').classList.remove('show__class');
             });
-            
-            $("#convert").click(function(){
+
+            $("#convert").click(function () {
                 $.ajax({
                     contentType: 'application/json',
                     data: JSON.stringify({ "text": document.getElementById('textarea').value }),
                     dataType: 'json',
-                    success: function(data){
+                    success: function (data) {
                         console.log("device control succeeded");
-                        document.getElementById('textarea').value = data['text'];
+                        // document.getElementById('textarea').value = data['text'];
+                        document.getElementById('converted__data').innerHTML = data['text'];
+                        document.getElementById('after__converted__container').classList.add('show__class');
                     },
-                    error: function(){
+                    error: function () {
                         console.log("Device control failed");
                     },
                     processData: false,
@@ -48,25 +45,62 @@
                     url: '/convert'
                 });
             });
+
+            $("#copy__text").click(function () {
+                var copyText = document.getElementById("converted__data");
+                var textArea = document.createElement("textarea");
+                textArea.value = copyText.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("Copy");
+                textArea.remove();
+                document.getElementById('toast__message').classList.add('show__class')
+                setTimeout(() => {
+                    document.getElementById('toast__message').classList.remove('show__class')
+                }, 2000);
+            });
         });
     </script>
 </head>
+
 <body>
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light justify-content-center">
-        <a class="navbar-brand" href="#">
-            إزالة النقاط من النصوص العربية - Convert Arabic texts to dotless
-        </a>
-    </nav>
-    
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">اكتب النص هنا - Write the text here</label>
-        <textarea id="textarea" maxlength="20000" class="form-control rounded-0" rows="10"></textarea>
+
+    <div class="header__container">
+        <span> إزالة النقاط من النصوص العربية - Convert Arabic texts to dotless</span>
+    </div>
+
+    <div class="text__container">
         <span>
-            <br>
-            <input class="btn btn-primary" id="convert" type="submit" value="convert - تحويل">
-            <input class="btn btn-primary" id="clear" type="button" value="clear - مسح">
+            اكتب النص هنا - Write the text here
         </span>
     </div>
+
+    <div class="textarea__container">
+        <textarea id="textarea" maxlength="20000" class="form-control rounded-0" rows="10"></textarea>
+    </div>
+
+    <div class="inputs__container">
+        <input class="convert__button" id="convert" type="submit" value="Convert - تحويل">
+        <input class="clear__button" id="clear" type="button" value="Clear - مسح">
+    </div>
+
+    <div class="after__converted__container" id="after__converted__container">
+        <div class="after__converted">
+            <span>After converted - بعد التحويل</span>
+        </div>
+
+        <div class="converted__text">
+            <span id="converted__data"></span>
+        </div>
+
+        <div class="inputs__container">
+            <input class="convert__button" id="copy__text" type="submit" value="Copy - نسخ">
+        </div>
+    </div>
+
+    <div class="alert alert-success" role="alert" id="toast__message">
+        <span>Text copied - تم نسخ النص</span>
+    </div>
 </body>
+
 </html>
