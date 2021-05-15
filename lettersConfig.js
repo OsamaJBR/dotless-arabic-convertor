@@ -14,6 +14,7 @@ exports.replacables = {
     '%u0642': '%u066F', // ق
     '%u0646': '%u06BA', // ن 
     '%u0629': '%u0647', // ة
+    '%u0634': '%u0633' // ش
 }
 
 exports.punctuations = [
