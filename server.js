@@ -5,6 +5,7 @@ const {convertToDotless} = require('./utils/convertToDotless')
 
 app.use(express.json({limit: '3mb'}));
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 app.post('/convert', async (req,res)=> {
     var text = req.body.text;
