@@ -15,3 +15,10 @@ exports.replacables = {
     '%u0646': '%u06BA', // ن 
     '%u0629': '%u0647', // ة
 }
+
+exports.punctuations = [
+    '%u060C', // ،
+    '%u061B', // ؛
+    '%u061F', // ؟
+    '%u066A' // ٪ (not a punctuation, but does the same effect on how letters are written before)
+];
