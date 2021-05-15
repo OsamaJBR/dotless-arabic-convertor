@@ -1,46 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-    
+
     <title>dotless.app</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-30Z4SZD6N8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
-        
+
         gtag('config', 'G-30Z4SZD6N8');
     </script>
     <!-- CSS (load bootstrap from a CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body { 
-            padding-top:50px;
-            margin: auto;
-            width: 50%;
-            padding: 10px;            
-        }        
+        .input__form--title {
+            font-size: 22px;
+        }
+
+        .text__area--input {
+            border-radius: 20px;
+            border: 2px solid #555555;
+            resize: none;
+            outline: none !important;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .beta__img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 85px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#clear").click(function(){
-                document.getElementById('textarea').value='';
+        $(document).ready(function () {
+            $("#clear").click(function () {
+                document.getElementById('textarea').value = '';
+                document.getElementById('output-textarea').value = '';
             });
-            
-            $("#convert").click(function(){
+
+            $("#convert").click(function () {
                 $.ajax({
                     contentType: 'application/json',
-                    data: JSON.stringify({ "text": document.getElementById('textarea').value }),
+                    data: JSON.stringify({"text": document.getElementById('textarea').value}),
                     dataType: 'json',
-                    success: function(data){
+                    success: function (data) {
                         console.log("device control succeeded");
-                        document.getElementById('textarea').value = data['text'];
+                        document.getElementById('output-textarea').value = data['text'];
                     },
-                    error: function(){
+                    error: function () {
                         console.log("Device control failed");
                     },
                     processData: false,
@@ -52,21 +70,24 @@
     </script>
 </head>
 <body>
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light justify-content-center">
-        <a class="navbar-brand" href="#">
-            إزالة النقاط من النصوص العربية - Convert Arabic texts to dotless
-        </a>
-    </nav>
-    
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">اكتب النص هنا - Write the text here</label>
-        <textarea id="textarea" maxlength="20000" class="form-control rounded-0" rows="10"></textarea>
-        <span>
-            <br>
+
+<div class="container">
+    <img class="beta__img" src="https://i.ibb.co/c3FRQJZ/beta-banner-600.png">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <div>
+                <p class="input__form--title text-center mb-5">اكتب النص هنا - Write the text here</p>
+                <textarea id="textarea" maxlength="20000" class="form-control text__area--input" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 text-center my-5">
             <input class="btn btn-primary" id="convert" type="submit" value="convert - تحويل">
             <input class="btn btn-primary" id="clear" type="button" value="clear - مسح">
-        </span>
+        </div>
+        <div class="col-md-12 mb-5">
+            <textarea id="output-textarea" readonly maxlength="20000" class="form-control text__area--input" rows="10"></textarea>
+        </div>
     </div>
+</div>
 </body>
 </html>
