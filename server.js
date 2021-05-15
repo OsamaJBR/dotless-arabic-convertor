@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 var {replacables} = require('./lettersConfig')
-const {asyncForEach} = require('./utils/asyncForEach')
+const {convertToDotless} = require('./utils/convertToDotless')
 
 app.use(express.json())
 
@@ -10,13 +10,11 @@ app.post('/convert', async (req,res)=> {
     var text = req.body.text;
     if(!text) return res.status(400).send({error: 'Empty text.'})
     var newText = [];
-    await asyncForEach(text, async(char)=>{
-        console.log(`letter=${char}  code=${escape(char)}  willBeReplacedWith=${replacables[escape(char)]} view=${unescape(replacables[escape(char)])}`)
-        newText.push(replacables[escape(char)] ? unescape(replacables[escape(char)]) : char)
-    });
+    for (let index = 0; index < text.length; index++) {
+        await convertToDotless(text[index], index, newText, text, replacables);
+    }
     res.send(newText.join(''))
 });
-
 
 // Server
 const port = Number(process.env.PORT || 3000);
