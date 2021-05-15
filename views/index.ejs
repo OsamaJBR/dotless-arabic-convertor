@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<meta charset="UTF-8">
+<head>
+    
+    <title>dotless.app</title>
+    
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { 
+            padding-top:50px;
+            margin: auto;
+            width: 50%;
+            padding: 10px;            
+        }        
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#clear").click(function(){
+                document.getElementById('textarea').value='';
+            });
+
+            $("#convert").click(function(){
+                $.ajax({
+                    contentType: 'application/json',
+                    data: JSON.stringify({ "text": document.getElementById('textarea').value }),
+                    dataType: 'json',
+                    success: function(data){
+                        console.log("device control succeeded");
+                        document.getElementById('textarea').value = data['text'];
+                    },
+                    error: function(){
+                        console.log("Device control failed");
+                    },
+                    processData: false,
+                    type: 'POST',
+                    url: '/convert'
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light justify-content-center">
+        <a class="navbar-brand" href="#">
+            إزالة النفاط من النصوص العربية - Convert Arabic texts to dotless
+        </a>
+    </nav>
+    
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">اكتب النص هنا - Write the text here</label>
+        <textarea id="textarea" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
+        <span>
+            <br>
+            <input class="btn btn-primary" id="convert" type="submit" value="convert - تحويل">
+            <input class="btn btn-primary" id="clear" type="button" value="clear - مسح">
+        </span>
+    </div>
+</body>
+</html>

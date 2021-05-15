@@ -5,6 +5,7 @@ var {replacables} = require('./lettersConfig')
 const {convertToDotless} = require('./utils/convertToDotless')
 
 app.use(express.json())
+app.set('view engine', 'ejs');
 
 app.post('/convert', async (req,res)=> {
     var text = req.body.text;
@@ -13,7 +14,11 @@ app.post('/convert', async (req,res)=> {
     for (let index = 0; index < text.length; index++) {
         await convertToDotless(text[index], index, newText, text, replacables);
     }
-    res.send(newText.join(''))
+    res.send({ "text": newText.join('') })
+});
+
+app.get('/', async (req, res) => {
+    res.render('index');
 });
 
 // Server
