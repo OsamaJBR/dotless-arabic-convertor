@@ -23,3 +23,23 @@ exports.punctuations = [
     '%u061F', // ؟
     '%u066A' // ٪ (not a punctuation, but does the same effect on how letters are written before)
 ];
+
+exports.tanween = [
+    '%u064B', // تنوين فتح
+    '%u064C', // تنوين ضم
+    '%u064D', // تنوين كسر
+    '%u0654', // همزة علوية
+    '%u0655' // همزة سفلية
+]
+
+exports.tashkeel = [
+    '%u064E', // فتحة
+    '%u064F', // ضمة
+    '%u0650', // كسرة
+    '%u0651', // شدة
+    '%u0652', // سكون
+    '%u0653' // مدة
+]
+
+
+
