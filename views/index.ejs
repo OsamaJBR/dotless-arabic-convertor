@@ -50,7 +50,7 @@
             $("#copy__text").click(function () {
                 var copyText = document.getElementById("converted__data");
                 var textArea = document.createElement("textarea");
-                textArea.value = copyText.textContent;
+                textArea.value = copyText.innerText;
                 document.body.appendChild(textArea);
                 textArea.select();
                 document.execCommand("Copy");
