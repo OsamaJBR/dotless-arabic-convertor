@@ -67,6 +67,9 @@
     border: 1px solid #dbdee0;
     padding: 16px;
     text-align: right;
+    max-height: 254px;
+    height: 254px;
+    overflow-y: auto;
 }
 
 .alert-success {

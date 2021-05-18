@@ -35,7 +35,7 @@
                     dataType: 'json',
                     success: function (data) {
                         console.log("device control succeeded");
-                        document.getElementById('converted__data').innerHTML = data['text'];
+                        document.getElementById('converted__data').innerText = data['text'];
                         document.getElementById('after__converted__container').classList.add('show__class');
                     },
                     error: function () {
@@ -50,7 +50,7 @@
             $("#copy__text").click(function () {
                 var copyText = document.getElementById("converted__data");
                 var textArea = document.createElement("textarea");
-                textArea.value = copyText.textContent;
+                textArea.value = copyText.innerText;
                 document.body.appendChild(textArea);
                 textArea.select();
                 document.execCommand("Copy");
