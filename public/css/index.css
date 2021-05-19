@@ -82,3 +82,8 @@
 .show__class {
     display: block;
 }
+
+.main-container {
+    padding-bottom: 50px;
+    overflow-y: auto;
+}

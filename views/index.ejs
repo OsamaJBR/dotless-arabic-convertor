@@ -3,22 +3,26 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Simple tool to remove dots from Arabic text." />
+    <meta name="description" content="Simple tool to remove dots from Arabic text."/>
     <meta property="og:image"
-        content="assets/logo.png" />
+          content="assets/logo.png"/>
     <title>dotless.app</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-30Z4SZD6N8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-30Z4SZD6N8');
     </script>
     <!-- CSS (load bootstrap from a CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -31,7 +35,7 @@
             $("#convert").click(function () {
                 $.ajax({
                     contentType: 'application/json',
-                    data: JSON.stringify({ "text": document.getElementById('textarea').value }),
+                    data: JSON.stringify({"text": document.getElementById('textarea').value}),
                     dataType: 'json',
                     success: function (data) {
                         console.log("device control succeeded");
@@ -66,6 +70,7 @@
 
 <body>
 
+<div class="main-container">
     <img class="beta__img" src="https://i.ibb.co/c3FRQJZ/beta-banner-600.png">
 
     <div class="header__container">
@@ -103,30 +108,32 @@
     <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
     <script>
-    window.fbAsyncInit = function() {
-        FB.init({
-        xfbml            : true,
-        version          : 'v10.0'
-        });
-    };
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v10.0'
+            });
+        };
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 
     <!-- Your Chat Plugin code -->
     <div class="fb-customerchat"
-    attribution="biz_inbox"
-    page_id="103643641918880">
+         attribution="biz_inbox"
+         page_id="103643641918880">
     </div>
     <div class="alert alert-success" role="alert" id="toast__message">
         <span>Text copied - تم نسخ النص</span>
     </div>
+</div>
 </body>
 
 </html>
