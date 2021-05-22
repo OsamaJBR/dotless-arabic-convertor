@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple tool to remove dots from Arabic text." />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="popup.js"></script>
+    <script type= "module" src="modules/convertToDotless.js"></script>
+    <script type= "module" src="modules/lettersConfig.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <title>dotless.app</title>
+</head>
+
+<body>
+
+    <img class="beta__img" src="https://i.ibb.co/c3FRQJZ/beta-banner-600.png">
+
+    <div class="header__container">
+        <span> Convert Arabic texts to dotless</span>
+    </div>
+
+    <div class="text__container">
+        <span>
+           Write the text here
+        </span>
+    </div>
+
+    <div class="textarea__container">
+        <textarea id="textarea" maxlength="20000" class="form-control rounded-0" rows="10"></textarea>
+    </div>
+
+    <div class="inputs__container">
+        <input class="convert__button" id="convert" type="submit" value="Convert">
+        <input class="clear__button" id="clear" type="button" value="Clear">
+    </div>
+
+    <div class="after__converted__container" id="after__converted__container">
+        <div class="after__converted">
+            <span>After converted</span>
+        </div>
+
+        <div class="converted__text">
+            <span id="converted__data"></span>
+        </div>
+
+        <div class="inputs__container">
+            <input class="convert__button" id="copy__text" type="submit" value="Copy">
+        </div>
+    </div>
+
+    <div class="alert alert-success" role="alert" id="toast__message">
+        <span>Text copied</span>
+    </div>
+</body>
+
+</html>
